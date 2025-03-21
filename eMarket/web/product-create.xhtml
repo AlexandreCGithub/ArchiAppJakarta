@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="monstyle.css" rel="stylesheet" type="text/css" />
+        <title>eMarket - Ajout de produits au catalogue</title>
+    </h:head>
+
+    <h:body>
+        <f:view>
+            <div class="container">
+                <h1><h:outputText value="Ajout de produits au catalogue" id="title"/></h1>
+                <ul>
+                    <li>
+                        <h:form>
+                            <h:commandLink action="tohomepage">
+                                <h:outputText value="Lien vers la page d'accueil"/>
+                            </h:commandLink>
+                        </h:form>
+                    </li>
+                </ul>
+                <h:form id="product-create">
+                    <p>
+                        <h:outputLabel id="productLabelId" for="productId" value="Identifiant : " />
+                        <h:inputText id="productId" value="#{catalogManager.formProductId}" />
+                    </p>
+                    <p>
+                        <h:outputLabel id="nameLabelId" for="nameId" value="Nom : " />
+                        <h:inputText id="nameId" value="#{catalogManager.formProductName}" />
+                    </p>
+                    <p>
+                        <h:outputLabel id="priceLabelId" for="priceId" value="Prix : " />
+                        <h:inputText id="priceId" value="#{catalogManager.formProductPrice}" />
+                    </p>
+                    <h:commandButton value="Valider" action="#{catalogManager.createProduct()}" />
+                </h:form>
+            </div>
+        </f:view>
+    </h:body>
+</html>

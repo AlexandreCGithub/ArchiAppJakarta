@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="monstyle.css" rel="stylesheet" type="text/css" />
+        <title>eMarket - Accueil</title>
+    </h:head>
+
+    <h:body>
+        <f:view>
+            <div class="container">
+                <h1><h:outputText value="Accueil" id="title"/></h1>
+                <ul>
+                    <li>
+                        <h:form>
+                            <h:commandLink action="toshoppingcart">
+                                <h:outputText value="Lien vers le panier"/>
+                            </h:commandLink>
+                        </h:form>
+                    </li>
+                    <li>
+                        <h:form>
+                            <h:commandLink action="tocatalog">
+                                <h:outputText value="Lien vers le catalogue"/>
+                            </h:commandLink>
+                        </h:form>
+                    </li>
+                    <li>
+                        <h:form>
+                            <h:commandLink action="tocreateproduct">
+                                <h:outputText value="Ajouter un nouveau produit au catalogue."/>
+                            </h:commandLink>
+                        </h:form>
+                    </li>
+                </ul>
+                <p><h:outputText value="Bienvenue sur l'application de commande en ligne eMarket."/></p>
+                <p><h:outputText value="N'hesitez pas a visiter "/>
+                    <h:outputLink value="http://www.centralesupelec.fr">le site de CentraleSupelec</h:outputLink>
+                <h:outputText value=" notre partenaire."/></p>
+            </div>
+        </f:view>
+    </h:body>
+</html>
