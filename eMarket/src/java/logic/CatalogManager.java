@@ -67,6 +67,9 @@ public class CatalogManager implements Serializable {
     
     public String createProduct(){
         productList.add(new Product(getFormProductId(), getFormProductName(), getFormProductPrice()));
+        setFormProductId(null);
+        setFormProductName(null);
+        setFormProductPrice(null);
         return "createProductSuccess";
     }
     

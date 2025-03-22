@@ -51,6 +51,10 @@
             <from-outcome>tohomepage</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>addToCartProductSuccess</from-outcome>
+            <to-view-id>/shoppingCart.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/product-create.xhtml</from-view-id>

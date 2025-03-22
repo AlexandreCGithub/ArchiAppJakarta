@@ -21,6 +21,25 @@
                         </h:form>
                     </li>
                 </ul>
+                <h:dataTable value="#{shoppingCartManager.shoppingCart}" var="item">
+                    <h:column>
+                        <h:outputText value="#{item.quantity}" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{item.product.name}" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{item.product.price}" />
+                    </h:column>
+                    <h:column>
+                        <h:form id="removeFromCart-product">
+                            <h:inputText id="removeId" value="#{shoppingCartManager.formRemoveQuantity}" />
+                            <h:commandButton action="#{shoppingCartManager.removeFromCart()}" value="Retirer du panier" >
+                                    <f:setPropertyActionListener value="#{item}" target="#{shoppingCartManager.shoppingCartItemToRemove}" />
+                            </h:commandButton>
+                        </h:form>
+                    </h:column>
+                </h:dataTable>
             </div>
         </f:view>
     </h:body>
