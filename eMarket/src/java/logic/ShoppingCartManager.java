@@ -22,7 +22,7 @@ public class ShoppingCartManager implements Serializable {
     private ArrayList<ShoppingCartItem> shoppingCart;
     private Product prodToAdd;
     private ShoppingCartItem shoppingCartItemToRemove;
-    private Integer formRemoveQuantity;
+    private Integer shoppingCartItemQuantity;
 
     public ShoppingCartManager(ArrayList<ShoppingCartItem> shoppingCart) {
         this.shoppingCart = shoppingCart;
@@ -44,10 +44,9 @@ public class ShoppingCartManager implements Serializable {
     public ShoppingCartItem getShoppingCartItemToRemove() {
         return shoppingCartItemToRemove;
     }
-
-
-    public Integer getFormRemoveQuantity() {
-        return formRemoveQuantity;
+    
+    public Integer getShoppingCartItemQuantity() {
+        return shoppingCartItemQuantity;
     }
     
     //Setter
@@ -62,9 +61,9 @@ public class ShoppingCartManager implements Serializable {
     public void setShoppingCartItemToRemove(ShoppingCartItem shoppingCartItemToRemove) {
         this.shoppingCartItemToRemove = shoppingCartItemToRemove;
     }
-    
-    public void setFormRemoveQuantity(Integer formRemoveQuantity) {
-        this.formRemoveQuantity = formRemoveQuantity;
+
+    public void setShoppingCartItemQuantity(Integer shoppingCartItemQuantity) {
+        this.shoppingCartItemQuantity = shoppingCartItemQuantity;
     }
     
     public String addToCart(){
@@ -80,20 +79,34 @@ public class ShoppingCartManager implements Serializable {
     }
     
     public String removeFromCart(){
-        for (ShoppingCartItem item : shoppingCart) {
-            if (item.getId().equals(shoppingCartItemToRemove.getId())) {
-                Integer quantityDelta = item.getQuantity() - getFormRemoveQuantity();
-                if (quantityDelta >= 0){
-                     item.setQuantity(item.getQuantity() - getFormRemoveQuantity());
-                }
-            }
-        }
-        setFormRemoveQuantity(null);
+        shoppingCart.removeIf(item -> item.getId().equals(shoppingCartItemToRemove.getId()));
         return null;
     }
     
+    public String modifyQuantityInCart(boolean increase) {
+        for (ShoppingCartItem item : shoppingCart) {
+            if (item.getId().equals(shoppingCartItemQuantity)) {
+                int newQuantity = increase ? item.getQuantity() + 1 : item.getQuantity() - 1;
+                if (newQuantity > 0) {
+                    item.setQuantity(newQuantity);
+                } else {
+                    shoppingCart.remove(item);
+                }
+                break;
+            }
+        }
+        return null;
+    }
+    
+    public double getTotalPrice() {
+        return shoppingCart.stream()
+            .mapToDouble(item -> item.getQuantity() * item.getProduct().getPrice())
+            .sum();
+    }
+
     @PostConstruct
     public void initCart() {
+        /*
         Product ordi = new Product(1, "Ordinateur Portable", 1200.99);
         Product smartphone = new Product(2, "Smartphone", 799.49);
         Product casque = new Product(3, "Casque Bluetooth", 149.99);
@@ -105,5 +118,6 @@ public class ShoppingCartManager implements Serializable {
         shoppingCart.add(ordiItem);
         shoppingCart.add(smartphoneItem);
         shoppingCart.add(casqueItem);
+        */
     }
 }

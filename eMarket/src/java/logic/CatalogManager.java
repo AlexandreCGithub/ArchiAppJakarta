@@ -4,12 +4,14 @@
  */
 package logic;
 
+import facade.ProductFacade;
 import java.util.ArrayList;
 import java.io.Serializable;
 import model.Product;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.annotation.PostConstruct;
+import jakarta.ejb.EJB;
 /**
  *
  * @author magnoir
@@ -19,9 +21,10 @@ import jakarta.annotation.PostConstruct;
 public class CatalogManager implements Serializable {
 
     private ArrayList<Product> productList;
-    private Integer formProductId;
     private String formProductName;
     private Double formProductPrice;
+    @EJB
+    private ProductFacade productFacade;  
 
     public CatalogManager() {
         this.productList = new ArrayList<>();
@@ -35,10 +38,6 @@ public class CatalogManager implements Serializable {
     public ArrayList<Product> getProductList() {
         return productList;
     }
-    
-    public Integer getFormProductId() {
-        return formProductId;
-    }
 
     public String getFormProductName() {
         return formProductName;
@@ -48,12 +47,13 @@ public class CatalogManager implements Serializable {
         return formProductPrice;
     }
 
+    public ProductFacade getProductFacade() {
+        return productFacade;
+    }
+
     //Setter
     public void setProductList(ArrayList<Product> productList) {
         this.productList = productList;
-    }
-    public void setFormProductId(Integer formProductId) {
-        this.formProductId = formProductId;
     }
     
     public void setFormProductName(String formProductName) {
@@ -64,21 +64,21 @@ public class CatalogManager implements Serializable {
         this.formProductPrice = formProductPrice;
     }
     
+    public void setProductFacade(ProductFacade productFacade) {
+        this.productFacade = productFacade;
+    }
     
     public String createProduct(){
-        productList.add(new Product(getFormProductId(), getFormProductName(), getFormProductPrice()));
-        setFormProductId(null);
+        Product entity = new Product(productList.size()+1, getFormProductName(), getFormProductPrice());
         setFormProductName(null);
         setFormProductPrice(null);
-        return "createProductSuccess";
+        productList.add(entity) ; 
+        productFacade.create(entity);
+        return "createProductSuccess" ;
     }
     
     @PostConstruct
-    public void initCatalog() {
-        productList.add(new Product(1, "Ordinateur Portable", 1200.99));
-        productList.add(new Product(2, "Smartphone", 799.49));
-        productList.add(new Product(3, "Casque Bluetooth", 149.99));
-        productList.add(new Product(4, "Souris Gaming", 59.99));
-        productList.add(new Product(5, "Clavier Mécanique", 89.99));
+    public void initCatalog(){
+        productList.addAll(productFacade.findAll());
     }
 }
