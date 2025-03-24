@@ -21,6 +21,7 @@
                         </h:form>
                     </li>
                 </ul>
+                <!--Catalogue de produits-->
                 <h:dataTable value="#{catalogManager.productList}" var="item">
                         <h:column>
                              <h:outputText value="#{item.id}" />
@@ -31,6 +32,7 @@
                         <h:column>
                             <h:outputText value="#{item.price}" />
                         </h:column>
+                         <!--//Ajout au panier-->
                         <h:column>
                             <h:form id="addToCart-product">
                                 <h:commandButton action="#{shoppingCartManager.addToCart()}" value="Ajouter au panier" >

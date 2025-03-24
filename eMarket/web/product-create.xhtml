@@ -21,14 +21,17 @@
                         </h:form>
                     </li>
                 </ul>
+                 <!--//Vérification des inputs coté client pour éviter la création de produits vides-->
                 <h:form id="product-create">
                     <p>
                         <h:outputLabel id="nameLabelId" for="nameId" value="Nom : " />
-                        <h:inputText id="nameId" value="#{catalogManager.formProductName}" />
+                        <h:inputText required="true" id="nameId" value="#{catalogManager.formProductName}" />
                     </p>
                     <p>
                         <h:outputLabel id="priceLabelId" for="priceId" value="Prix : " />
-                        <h:inputText id="priceId" value="#{catalogManager.formProductPrice}" />
+                        <h:inputText required="true" id="priceId" value="#{catalogManager.formProductPrice}" >
+                            <f:validateDoubleRange minimum="0.01"/>
+                        </h:inputText>
                     </p>
                     <h:commandButton value="Valider" action="#{catalogManager.createProduct()}" />
                 </h:form>

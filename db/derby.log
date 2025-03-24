@@ -1,7 +1,7 @@
-Sun Mar 23 21:40:33 CET 2025 : Apache Derby Network Server - 10.17.1.0 - (1913217) started and ready to accept connections on port 1527
+Mon Mar 24 15:58:44 CET 2025 : Apache Derby Network Server - 10.17.1.0 - (1913217) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Sun Mar 23 21:40:51 CET 2025:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.17.1.0 - (1913217): instance a816c00e-0195-c4bc-5ca3-00000d9abd50 
+Mon Mar 24 15:58:51 CET 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.17.1.0 - (1913217): instance a816c00e-0195-c8a9-c4d0-00000d9abd50 
 on database directory /home/magnoir/Documents/CS/s3/archiapp/ArchiAppJakarta/db/eMarket with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@639fee48 
 Loaded from file:/home/magnoir/Documents/CS/s3/archiapp/ArchiAppJakarta/db-derby-10.17.1.0-bin/lib/derby.jar
 java.vendor=Oracle Corporation
@@ -13,4 +13,8 @@ os.version=6.12.10-76061203-generic
 derby.system.home=/home/magnoir/Documents/CS/s3/archiapp/ArchiAppJakarta/db
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Sun Mar 23 22:11:36 CET 2025: Shutting down Derby engine
+Mon Mar 24 16:24:26 CET 2025: Shutting down Derby engine
+----------------------------------------------------------------
+Mon Mar 24 16:24:26 CET 2025:
+Shutting down instance a816c00e-0195-c8a9-c4d0-00000d9abd50 on database directory /home/magnoir/Documents/CS/s3/archiapp/ArchiAppJakarta/db/eMarket with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@639fee48 
+----------------------------------------------------------------

@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package logic;
+
 import java.util.ArrayList;
 import java.io.Serializable;
 import model.ShoppingCartItem;
@@ -10,11 +7,7 @@ import jakarta.inject.Named;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.annotation.PostConstruct;
 import model.Product;
-/**
-/**
- *
- * @author magnoir
- */
+
 @Named
 @ApplicationScoped
 public class ShoppingCartManager implements Serializable {
@@ -66,6 +59,7 @@ public class ShoppingCartManager implements Serializable {
         this.shoppingCartItemQuantity = shoppingCartItemQuantity;
     }
     
+    //Ajouter les articles du panier
     public String addToCart(){
         for (ShoppingCartItem item : shoppingCart) {
             if (item.getProduct().getId().equals(prodToAdd.getId())) {
@@ -78,11 +72,13 @@ public class ShoppingCartManager implements Serializable {
         return "addToCartProductSuccess";
     }
     
+    //Retirer les articles du panier
     public String removeFromCart(){
         shoppingCart.removeIf(item -> item.getId().equals(shoppingCartItemToRemove.getId()));
         return null;
     }
     
+    //Modifier la quantité des articles dans le panier
     public String modifyQuantityInCart(boolean increase) {
         for (ShoppingCartItem item : shoppingCart) {
             if (item.getId().equals(shoppingCartItemQuantity)) {
@@ -98,6 +94,7 @@ public class ShoppingCartManager implements Serializable {
         return null;
     }
     
+    //Obtenir le prix total
     public double getTotalPrice() {
         return shoppingCart.stream()
             .mapToDouble(item -> item.getQuantity() * item.getProduct().getPrice())

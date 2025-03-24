@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package logic;
 
 import facade.ProductFacade;
@@ -12,10 +8,7 @@ import jakarta.inject.Named;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
-/**
- *
- * @author magnoir
- */
+
 @Named
 @ApplicationScoped
 public class CatalogManager implements Serializable {
